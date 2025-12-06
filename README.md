@@ -117,3 +117,29 @@ make
 
 
 
+
+## 📊 Performance Benchmark (性能基准测试)
+
+Tested under standard development environment (Virtual Machine, Ubuntu 20.04).
+Used a custom multi-threaded C++ client to simulate high-concurrency traffic.
+
+### Test Environment                  
+* **OS**: Ubuntu 20.04 LTS (Virtual Machine)              
+* **CPU**: 4 Cores              
+* **Network**: Localhost (Loopback)                 
+* **Tool**: Custom Stress Client (5 Concurrent Threads)                 
+* **Payload**: JSON serialized chat messages (approx. 100 bytes/msg)                   
+
+### Results               
+| Metric | Value | Description |              
+| :--- | :--- | :--- |                    
+| **Concurrency** | 5,000+ | Simulated concurrent connections |               
+| **Throughput (QPS)** | **6,500+** | Queries Per Second (End-to-End Delivery) |            
+| **Total Requests** | 50,000 | No connection reset or packet loss observed |                           
+
+> **Note**: The QPS is currently bound by the overhead of `nlohmann/json` serialization and the intentional delay added in the test client to handle TCP sticking on the server side.
+
+压力测试：   
+<img width="428" height="230" alt="image" src="https://github.com/user-attachments/assets/8975bdc9-280c-468b-b6c9-c2439086fd01" />
+
+
